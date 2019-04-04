@@ -1,5 +1,6 @@
 from random import randint
 from math import sqrt
+import numpy, matplotlib.pyplot as plt
 #miasta = {"Nr": 0, "Ox": 0, "Oy": 0}
 miasta = {}
 way_to_now = {}
@@ -44,3 +45,6 @@ for i in range(3):
     maxi -= 1
 
 print(way_to_now)
+plt.plot([miasta[i] for i in range(16)],[miasta[i] for i in range(16)])
+plt.plot(way_to_now,way_to_now)
+plt.show()
