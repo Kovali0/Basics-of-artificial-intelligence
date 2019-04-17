@@ -1,4 +1,5 @@
 NUMBER_OF_SAMPLES = 8
+WITH_POWER = false
 
 def assessmentOfAdaptation (x)
     return 2*(x**2+1)
@@ -16,13 +17,19 @@ end
 
 public def to_bin(width = 1)
     '%0*b' % [width, self]
-end
+end     
 
 def rouletteWheel (av, ng)
     roulette = Array.new(8)
     roulette_percents = Array.new(8)
-    for i in 0..7
-        roulette[i] = av[i]**2
+    if WITH_POWER
+        for i in 0..7
+            roulette[i] = av[i]**2
+        end
+    else
+        for i in 0..7
+            roulette[i] = av[i]
+        end
     end
     sum = roulette.inject(0, &:+)
     for i in 0..7
