@@ -27,9 +27,10 @@ def rouletteWheel (av, ng)
             roulette[i] = av[i]**2
         end
     else
-        for i in 0..7
-            roulette[i] = av[i]
-        end
+        roulette = av
+        #for i in 0..7
+        #    roulette[i] = av[i]
+        #end
     end
     sum = roulette.inject(0, &:+)
     for i in 0..7
@@ -67,8 +68,8 @@ def crossingChromosomes (chs)
     @retch = Array.new(8)
     @tmpch = Array.new(8)
     @tmpch = chs
-    #locus = 7 #Test line.
-    locus = rand(1..14) # This locus have the same value for each pair
+    #locus = 4 #Test line.
+    locus = rand(1..7) # This locus have the same value for each pair
     for k in 0..3
         @gp1 = rand(0..@tmpch.length()-1)
         loop do 
@@ -77,7 +78,7 @@ def crossingChromosomes (chs)
                 break 
             end
         end
-        #locus = rand(1..14) -> uncomment this for switching locus for each pair
+        #locus = rand(1..7) -> uncomment this for switching locus for each pair
         #p 'Temporary table with chromosomes tmpch: ' #Test line.
         #p @tmpch #Test line.
         #p 'First chromosome after modyfication by crossing : ' #Test line.
@@ -98,7 +99,7 @@ def crossingChromosomes (chs)
 end
 
 def mutatingGen (ch) 
-    locus = rand(1..14)
+    locus = rand(1..7)
     if ch[locus] == '1'
         ch[locus] = "0"
     else
@@ -120,7 +121,7 @@ def Program ()
     adaptation_values = Array.new(8)
     next_generation = Array.new(8)
     generateFirstPopulation(population)
-    for generations in 0..10
+    for generations in 0..60
         puts "Generation number #{generations} \n"
         puts "Population: \n"
         p population
@@ -134,7 +135,7 @@ def Program ()
         p next_generation
         for j in 0..7
             population[j] = re_assessmentOfAdaptation(next_generation[j])
-            chromosomes[j] = population[j].to_bin(16)
+            chromosomes[j] = population[j].to_bin(8)
         end
         puts "Population chromosomes: \n"
         p chromosomes
