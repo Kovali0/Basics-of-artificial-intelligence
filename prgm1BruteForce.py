@@ -43,7 +43,7 @@ class City:
 
     def __repr__(self):
         return str(self.name) + " < " + str(self.x) + ", " + str(self.y) + " >"
-        
+
 class Cities:
     def __init__(self, cities = []):  
         self.cities = []
